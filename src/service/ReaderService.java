@@ -72,7 +72,7 @@ public class ReaderService {
             throw new IllegalArgumentException("Không tìm thấy độc giả ID: " + updated.getReaderId());
         }
 
-        // Kiểm tra CMND mới có bị trùng với người KHÁC không
+
         Reader existing = findByIdCard(updated.getIdCard());
         if (existing != null && !existing.getReaderId().equals(updated.getReaderId())) {
             throw new IllegalArgumentException("CMND/CCCD '" + updated.getIdCard() + "' đã được dùng bởi độc giả khác.");
@@ -87,6 +87,15 @@ public class ReaderService {
             if (readers.get(i).getReaderId().equals(readerId)) return i;
         }
         return -1;
+    }
+
+    public void deleteReader(String readerId) {
+        int index = indexById(readerId);
+        if (index == -1) {
+            throw new IllegalArgumentException("Không tìm thấy độc giả ID: " + readerId);
+        }
+        readers.remove(index);
+        save();
     }
 
 
