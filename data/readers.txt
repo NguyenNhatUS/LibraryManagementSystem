@@ -1,0 +1,3 @@
+R001|Nguyen Van An|079201001234|2000-05-15|Nam|an.nguyen@email.com|123 Le Loi Q1 HCM|2023-01-10
+R002|Tran Thi Bich|079302005678|1999-08-22|Nữ|bich.tran@email.com|456 Nguyen Hue Q1 HCM|2022-06-01
+R003|Le Minh Cuong|079403009012|2001-03-30|Nam|cuong.le@email.com|789 CMT8 Q3 HCM|2024-03-15

@@ -1,0 +1,4 @@
+# Format: slipId|readerId|borrowDate|expectedReturnDate|actualReturnDate|isbn1;isbn2|isReturned
+B001|R001|2024-01-05|2024-01-12|2024-01-11|978-0-13-468599-1|true
+B002|R002|2024-01-08|2024-01-15|null|978-0-13-110362-7;978-604-2-12345-6|false
+B003|R003|2024-01-01|2024-01-08|2024-01-20|978-604-2-67890-1|true

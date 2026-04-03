@@ -1,0 +1,6 @@
+# Format: isbn|title|author|publisher|publishYear|genre|price|totalCount|availableCount
+978-0-13-468599-1|Clean Code|Robert C. Martin|Prentice Hall|2008|Công nghệ|350000|3|2
+978-0-13-110362-7|The Pragmatic Programmer|David Thomas|Addison-Wesley|2019|Công nghệ|420000|2|2
+978-604-2-12345-6|Dế Mèn Phiêu Lưu Ký|Tô Hoài|NXB Kim Đồng|1941|Văn học|55000|5|5
+978-604-2-67890-1|Số Đỏ|Vũ Trọng Phụng|NXB Hội Nhà Văn|1936|Văn học|75000|4|3
+978-0-7432-7356-5|The Great Gatsby|F. Scott Fitzgerald|Scribner|1925|Văn học|120000|2|2
