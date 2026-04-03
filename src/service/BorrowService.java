@@ -4,6 +4,7 @@ import model.Book;
 import model.BorrowSlip;
 import model.Reader;
 import util.FileManager;
+
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
@@ -87,6 +88,42 @@ public class BorrowService {
         }
     }
 
+    public ReturnResult returnBooks(String slipId, LocalDate returnDate, List<String> lostIsbns) {
+        BorrowSlip slip = findSlipById(slipId);
+        if (slip == null) {
+            throw new IllegalArgumentException("Không tìm thấy phiếu mượn ID: " + slipId);
+        }
+        if (slip.isReturned()) {
+            throw new IllegalArgumentException("Phiếu mượn '" + slipId + "' đã được trả trước đó.");
+        }
+
+
+        slip.setActualReturnDate(returnDate);
+        double lateFee = slip.getLateFee();
+
+
+        double lostFee = 0;
+        for (String isbn : slip.getBookIsbns()) {
+            if (lostIsbns != null && lostIsbns.contains(isbn)) {
+
+                Book book = bookService.findByIsbn(isbn);
+                if (book != null) {
+                    lostFee += book.getLostPenalty();
+                    bookService.reportLostBook(isbn); // Giảm totalCount
+                }
+            } else {
+
+                bookService.returnBook(isbn); // Tăng availableCount
+            }
+        }
+
+
+        slip.markReturned(returnDate);
+        save();
+
+        return new ReturnResult(slip, lateFee, lostFee,
+                lostIsbns != null ? lostIsbns : new ArrayList<>());
+    }
 
     public List<BorrowSlip> getAllSlips() {
         return new ArrayList<>(slips);
@@ -99,6 +136,35 @@ public class BorrowService {
                 .orElse(null);
     }
 
+    public List<BorrowSlip> getSlipsByReader(String readerId) {
+        return slips.stream()
+                .filter(s -> s.getReaderId().equals(readerId))
+                .collect(Collectors.toList());
+    }
+
+
+    public int getBorrowingBookCount() {
+        return slips.stream()
+                .filter(s -> !s.isReturned())
+                .mapToInt(s -> s.getBookIsbns().size())
+                .sum();
+    }
+
+
+    public List<Reader> getLateReaders() {
+        return slips.stream()
+                .filter(s -> !s.isReturned() && s.isLate())
+                .map(s -> readerService.findById(s.getReaderId()))
+                .filter(r -> r != null) // Phòng trường hợp data bị lỗi
+                .distinct()
+                .collect(Collectors.toList());
+    }
+
+    public List<BorrowSlip> getLateSlips() {
+        return slips.stream()
+                .filter(s -> !s.isReturned() && s.isLate())
+                .collect(Collectors.toList());
+    }
 
     private String generateSlipId() {
         int max = 0;
