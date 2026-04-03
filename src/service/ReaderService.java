@@ -65,5 +65,29 @@ public class ReaderService {
         fileManager.writeReaders(readers);
     }
 
+    public void updateReader(Reader updated) {
+        validateReader(updated);
+        int index = indexById(updated.getReaderId());
+        if (index == -1) {
+            throw new IllegalArgumentException("Không tìm thấy độc giả ID: " + updated.getReaderId());
+        }
+
+        // Kiểm tra CMND mới có bị trùng với người KHÁC không
+        Reader existing = findByIdCard(updated.getIdCard());
+        if (existing != null && !existing.getReaderId().equals(updated.getReaderId())) {
+            throw new IllegalArgumentException("CMND/CCCD '" + updated.getIdCard() + "' đã được dùng bởi độc giả khác.");
+        }
+
+        readers.set(index, updated);
+        save();
+    }
+
+    private int indexById(String readerId) {
+        for (int i = 0; i < readers.size(); i++) {
+            if (readers.get(i).getReaderId().equals(readerId)) return i;
+        }
+        return -1;
+    }
+
 
 }
