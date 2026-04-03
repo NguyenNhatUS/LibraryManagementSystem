@@ -34,6 +34,25 @@ public class AccountService {
     }
 
 
+    public boolean login(String username, String password) {
+        String storedHash = accounts.get(username.trim());
+        if (storedHash == null) return false;
+        if (!storedHash.equals(hash(password))) return false;
+
+        currentUser = username.trim();
+        return true;
+    }
+
+    public void logout() {
+        currentUser = null;
+    }
+
+    public boolean isLoggedIn()      { return currentUser != null; }
+    public String  getCurrentUser()  { return currentUser; }
+
+    public boolean hasAnyAccount()   { return !accounts.isEmpty(); }
+
+
     private String hash(String input) {
         try {
             MessageDigest md = MessageDigest.getInstance("SHA-256");
