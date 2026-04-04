@@ -4,7 +4,6 @@ import model.Book;
 import model.BorrowSlip;
 import model.Reader;
 import util.FileManager;
-
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
