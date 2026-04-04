@@ -1,29 +1,15 @@
 package ui;
 
 import service.AccountService;
-
 import javax.swing.*;
 import java.awt.*;
 
-/**
- * MainFrame — cửa sổ chính sau khi đăng nhập.
- *
- * Layout:
- *  ┌─────────────────────────────────────────────┐
- *  │  Header: tên hệ thống + thông tin user       │
- *  ├──────────┬──────────────────────────────────┤
- *  │ Sidebar  │  Content Panel (thay đổi theo tab)│
- *  │ (menu)   │                                   │
- *  └──────────┴──────────────────────────────────┘
- *
- * Hiện tại: stub — các Panel sẽ được thêm vào từng bước.
- */
+
 public class MainFrame extends JFrame {
 
     private final AccountService accountService;
     private final String currentUser;
 
-    // Content area — swap panel vào đây
     private JPanel contentPanel;
 
     public MainFrame(AccountService accountService, String currentUser) {
@@ -39,15 +25,14 @@ public class MainFrame extends JFrame {
         setLocationRelativeTo(null);
         setLayout(new BorderLayout());
 
-        // ── Header ───────────────────────────────────────────────────────────
         JPanel header = buildHeader();
         add(header, BorderLayout.NORTH);
 
-        // ── Sidebar ──────────────────────────────────────────────────────────
+
         JPanel sidebar = buildSidebar();
         add(sidebar, BorderLayout.WEST);
 
-        // ── Content (placeholder) ─────────────────────────────────────────────
+
         contentPanel = new JPanel(new BorderLayout());
         showPlaceholder("Chào mừng, " + currentUser + "!\nChọn chức năng từ menu bên trái.");
         add(contentPanel, BorderLayout.CENTER);
@@ -55,7 +40,7 @@ public class MainFrame extends JFrame {
         setVisible(true);
     }
 
-    // ── Header ───────────────────────────────────────────────────────────────
+
     private JPanel buildHeader() {
         JPanel header = new JPanel(new BorderLayout());
         header.setBackground(new Color(51, 102, 153));
@@ -81,7 +66,6 @@ public class MainFrame extends JFrame {
         return header;
     }
 
-    // ── Sidebar ───────────────────────────────────────────────────────────────
     private JPanel buildSidebar() {
         JPanel sidebar = new JPanel();
         sidebar.setLayout(new BoxLayout(sidebar, BoxLayout.Y_AXIS));
@@ -109,7 +93,6 @@ public class MainFrame extends JFrame {
         return sidebar;
     }
 
-    /** Label nhóm nhỏ trong sidebar */
     private JLabel sidebarGroup(String text) {
         JLabel lbl = new JLabel("  " + text);
         lbl.setFont(new Font("SansSerif", Font.BOLD, 11));
@@ -119,7 +102,6 @@ public class MainFrame extends JFrame {
         return lbl;
     }
 
-    /** Nút menu trong sidebar */
     private JButton sidebarBtn(String text, Runnable action) {
         JButton btn = new JButton(text);
         btn.setMaximumSize(new Dimension(Integer.MAX_VALUE, 32));
@@ -131,7 +113,6 @@ public class MainFrame extends JFrame {
         btn.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
         btn.addActionListener(e -> action.run());
 
-        // Hover effect nhẹ
         btn.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseEntered(java.awt.event.MouseEvent e) {
                 btn.setBackground(new Color(210, 225, 240));
@@ -145,8 +126,7 @@ public class MainFrame extends JFrame {
         return btn;
     }
 
-    // ── Swap content ─────────────────────────────────────────────────────────
-    /** Thay panel trong vùng content */
+
     public void swapPanel(JPanel panel) {
         contentPanel.removeAll();
         contentPanel.add(panel, BorderLayout.CENTER);
@@ -164,7 +144,6 @@ public class MainFrame extends JFrame {
         swapPanel(p);
     }
 
-    // ── Đăng xuất ────────────────────────────────────────────────────────────
     private void handleLogout() {
         int confirm = JOptionPane.showConfirmDialog(this,
                 "Bạn có chắc muốn đăng xuất?", "Xác nhận",
@@ -175,7 +154,6 @@ public class MainFrame extends JFrame {
         }
     }
 
-    // ── Inner placeholder panel (xóa khi có panel thật) ──────────────────────
     private static class PlaceholderPanel extends JPanel {
         PlaceholderPanel(String msg) {
             setLayout(new GridBagLayout());
