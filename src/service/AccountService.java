@@ -1,12 +1,10 @@
 package service;
 
 import util.FileManager;
-
 import java.nio.charset.StandardCharsets;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.util.Map;
-
 
 public class AccountService {
 
@@ -26,13 +24,12 @@ public class AccountService {
             throw new IllegalArgumentException("Username và password không được để trống.");
         }
         if (accounts.containsKey(username)) {
-            return false; // Username đã tồn tại
+            return false;
         }
         accounts.put(username, hash(password));
         fileManager.writeAccounts(accounts);
         return true;
     }
-
 
     public boolean login(String username, String password) {
         String storedHash = accounts.get(username.trim());
