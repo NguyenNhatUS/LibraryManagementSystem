@@ -9,5 +9,8 @@ public class Main {
         FileManager fileManager = new FileManager("data/");
         AccountService accountService = new AccountService(fileManager);
         SwingUtilities.invokeLater(() -> new LoginFrame(accountService));
+
+        System.out.println("hi");
+
     }
 }
