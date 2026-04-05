@@ -6,11 +6,13 @@ import java.awt.*;
 
 
 public class LoginFrame extends JFrame {
+
     private final AccountService accountService;
     private JTextField txtUsername;
     private JPasswordField txtPassword;
     private JButton btnLogin;
     private JButton btnRegister;
+
 
     public LoginFrame(AccountService accountService) {
         this.accountService = accountService;
@@ -28,14 +30,17 @@ public class LoginFrame extends JFrame {
         gbc.fill = GridBagConstraints.HORIZONTAL;
         gbc.insets = new Insets(6, 6, 6, 6);
 
+
         JLabel lblTitle = new JLabel("HỆ THỐNG QUẢN LÝ THƯ VIỆN", SwingConstants.CENTER);
         lblTitle.setFont(new Font("SansSerif", Font.BOLD, 16));
         gbc.gridx = 0; gbc.gridy = 0; gbc.gridwidth = 2;
         gbc.insets = new Insets(0, 0, 20, 0);
         panel.add(lblTitle, gbc);
 
+
         gbc.insets = new Insets(6, 6, 6, 6);
         gbc.gridwidth = 1;
+
 
         gbc.gridx = 0; gbc.gridy = 1; gbc.weightx = 0;
         panel.add(new JLabel("Tên đăng nhập:"), gbc);
@@ -48,9 +53,11 @@ public class LoginFrame extends JFrame {
         panel.add(new JLabel("Mật khẩu:"), gbc);
 
         txtPassword = new JPasswordField(18);
+
         txtPassword.addActionListener(e -> handleLogin());
         gbc.gridx = 1; gbc.weightx = 1;
         panel.add(txtPassword, gbc);
+
 
         JPanel btnPanel = new JPanel(new FlowLayout(FlowLayout.CENTER, 10, 0));
 
@@ -69,11 +76,13 @@ public class LoginFrame extends JFrame {
         gbc.insets = new Insets(16, 0, 0, 0);
         panel.add(btnPanel, gbc);
 
+
         add(panel);
         pack();
-        setLocationRelativeTo(null);
+        setLocationRelativeTo(null); // căn giữa màn hình
         setVisible(true);
     }
+
 
     private void handleLogin() {
         String username = txtUsername.getText().trim();
@@ -119,7 +128,6 @@ public class LoginFrame extends JFrame {
         String newUser = tfNewUser.getText().trim();
         String newPass = new String(pfNewPass.getPassword());
         String confirm = new String(pfConfirm.getPassword());
-
 
         if (newUser.isEmpty() || newPass.isEmpty()) {
             showError("Tên đăng nhập và mật khẩu không được để trống.");

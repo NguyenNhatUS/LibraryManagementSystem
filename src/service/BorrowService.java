@@ -15,7 +15,7 @@ public class BorrowService {
     private final FileManager   fileManager;
     private final ReaderService readerService;
     private final BookService   bookService;
-    private List<BorrowSlip>    slips; // Collection chính
+    private List<BorrowSlip>    slips;
 
     public BorrowService(FileManager fileManager,
                          ReaderService readerService,
@@ -108,11 +108,11 @@ public class BorrowService {
                 Book book = bookService.findByIsbn(isbn);
                 if (book != null) {
                     lostFee += book.getLostPenalty();
-                    bookService.reportLostBook(isbn); // Giảm totalCount
+                    bookService.reportLostBook(isbn);
                 }
             } else {
 
-                bookService.returnBook(isbn); // Tăng availableCount
+                bookService.returnBook(isbn);
             }
         }
 
