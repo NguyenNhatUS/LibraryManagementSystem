@@ -9,18 +9,7 @@ import javax.swing.table.TableRowSorter;
 import java.awt.*;
 import java.util.List;
 
-/**
- * BookPanel — quản lý sách (xem, thêm, sửa, xóa, tìm kiếm).
- *
- * Layout:
- *  ┌─────────────────────────────────────────────────────┐
- *  │  [Tìm theo...]  [TextField]  [Tìm]  [Hiển thị tất cả] │  ← toolbar
- *  ├─────────────────────────────────────────────────────┤
- *  │  JTable — danh sách sách                            │  ← center
- *  ├─────────────────────────────────────────────────────┤
- *  │  [Thêm]  [Sửa]  [Xóa]  [Làm mới]                   │  ← bottom
- *  └─────────────────────────────────────────────────────┘
- */
+
 public class BookPanel extends JPanel {
 
     private static final String[] COLUMNS = {
@@ -47,7 +36,6 @@ public class BookPanel extends JPanel {
         loadTable(bookService.getAllBooks());
     }
 
-    // ── Toolbar ───────────────────────────────────────────────────────────────
     private JPanel buildToolbar() {
         JPanel bar = new JPanel(new FlowLayout(FlowLayout.LEFT, 8, 0));
 
@@ -72,7 +60,6 @@ public class BookPanel extends JPanel {
         return bar;
     }
 
-    // ── Bảng dữ liệu ──────────────────────────────────────────────────────────
     private JScrollPane buildTable() {
         tableModel = new DefaultTableModel(COLUMNS, 0) {
             @Override public boolean isCellEditable(int r, int c) { return false; }
@@ -83,7 +70,7 @@ public class BookPanel extends JPanel {
         table.setRowHeight(24);
         table.setRowSorter(new TableRowSorter<>(tableModel));
 
-        // Double-click = Sửa
+
         table.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent e) {
                 if (e.getClickCount() == 2) handleEdit();
@@ -98,7 +85,6 @@ public class BookPanel extends JPanel {
         return new JScrollPane(table);
     }
 
-    // ── Bottom buttons ────────────────────────────────────────────────────────
     private JPanel buildBottom() {
         JPanel bar = new JPanel(new FlowLayout(FlowLayout.LEFT, 8, 0));
 
@@ -120,7 +106,7 @@ public class BookPanel extends JPanel {
         return bar;
     }
 
-    // ── Load dữ liệu vào bảng ─────────────────────────────────────────────────
+
     private void loadTable(List<Book> books) {
         tableModel.setRowCount(0);
         for (Book b : books) {
@@ -138,7 +124,6 @@ public class BookPanel extends JPanel {
         }
     }
 
-    // ── Lấy ISBN của dòng đang chọn ──────────────────────────────────────────
     private String getSelectedIsbn() {
         int viewRow = table.getSelectedRow();
         if (viewRow < 0) return null;
@@ -146,7 +131,6 @@ public class BookPanel extends JPanel {
         return (String) tableModel.getValueAt(modelRow, 0);
     }
 
-    // ── Tìm kiếm ─────────────────────────────────────────────────────────────
     private void handleSearch() {
         String keyword = txtSearch.getText().trim();
         if (keyword.isEmpty()) {
@@ -173,7 +157,7 @@ public class BookPanel extends JPanel {
         }
     }
 
-    // ── Thêm sách ─────────────────────────────────────────────────────────────
+
     private void handleAdd() {
         BookForm form = new BookForm();
         int result = JOptionPane.showConfirmDialog(this, form.getPanel(),
@@ -193,7 +177,7 @@ public class BookPanel extends JPanel {
         }
     }
 
-    // ── Sửa sách ──────────────────────────────────────────────────────────────
+
     private void handleEdit() {
         String isbn = getSelectedIsbn();
         if (isbn == null) { showError("Vui lòng chọn một cuốn sách để sửa."); return; }
@@ -218,7 +202,6 @@ public class BookPanel extends JPanel {
         }
     }
 
-    // ── Xóa sách ──────────────────────────────────────────────────────────────
     private void handleDelete() {
         String isbn = getSelectedIsbn();
         if (isbn == null) { showError("Vui lòng chọn một cuốn sách để xóa."); return; }
@@ -226,7 +209,6 @@ public class BookPanel extends JPanel {
         Book b = bookService.findByIsbn(isbn);
         if (b == null) return;
 
-        // Không cho xóa nếu còn sách đang được mượn
         if (b.getAvailableCount() < b.getTotalCount()) {
             showError("Không thể xóa — vẫn còn " +
                     (b.getTotalCount() - b.getAvailableCount()) + " quyển đang được mượn.");
@@ -251,9 +233,7 @@ public class BookPanel extends JPanel {
         JOptionPane.showMessageDialog(this, msg, "Lỗi", JOptionPane.ERROR_MESSAGE);
     }
 
-    // =========================================================================
-    // Inner class: Form nhập liệu — dùng chung cho Add và Edit
-    // =========================================================================
+
     private class BookForm {
 
         private final JTextField tfIsbn        = new JTextField(16);
@@ -265,13 +245,12 @@ public class BookPanel extends JPanel {
         private final JTextField tfPrice       = new JTextField(10);
         private final JTextField tfTotalCount  = new JTextField(6);
 
-        /** Form trống — dùng cho Thêm */
         BookForm() {}
 
-        /** Form pre-filled — dùng cho Sửa */
+
         BookForm(Book b) {
             tfIsbn.setText(b.getIsbn());
-            tfIsbn.setEditable(false); // ISBN là key, không cho sửa
+            tfIsbn.setEditable(false);
             tfTitle.setText(b.getTitle());
             tfAuthor.setText(b.getAuthor());
             tfPublisher.setText(b.getPublisher());
@@ -348,8 +327,7 @@ public class BookPanel extends JPanel {
                 return null;
             }
 
-            // Khi thêm mới: availableCount = totalCount
-            // Khi sửa: availableCount giữ nguyên — BookService tự xử lý
+
             return new Book(isbn, title, author, publisher, publishYear,
                     genre, price, totalCount, totalCount);
         }
