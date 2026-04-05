@@ -27,6 +27,18 @@ public class BorrowService {
         this.slips         = fileManager.readBorrowSlips();
     }
 
+    public BorrowSlip findBySlipId(String slipId) {
+        return slips.stream()
+                .filter(s -> s.getSlipId().equals(slipId))
+                .findFirst().orElse(null);
+    }
+
+    public List<BorrowSlip> findUnreturnedByReaderId(String readerId) {
+        return slips.stream()
+                .filter(s -> s.getReaderId().equals(readerId) && !s.isReturned())
+                .collect(Collectors.toList());
+    }
+
     public BorrowSlip createBorrowSlip(String readerId, List<String> isbns, LocalDate borrowDate) {
         Reader reader = readerService.findById(readerId);
         if (reader == null) {
@@ -69,6 +81,21 @@ public class BorrowService {
         slips.add(slip);
         save();
         return slip;
+    }
+
+    public boolean addBorrowSlip(BorrowSlip slip) {
+        for (String isbn : slip.getBookIsbns()) {
+            Book book = bookService.findByIsbn(isbn);
+            if (book == null || book.getAvailableCount() <= 0) return false;
+        }
+
+        for (String isbn : slip.getBookIsbns()) {
+            bookService.borrowBook(isbn);
+        }
+
+        slips.add(slip);
+        fileManager.writeBorrowSlips(slips);
+        return true;
     }
 
     public static class ReturnResult {
@@ -166,7 +193,7 @@ public class BorrowService {
                 .collect(Collectors.toList());
     }
 
-    private String generateSlipId() {
+    public String generateSlipId() {
         int max = 0;
         for (BorrowSlip s : slips) {
             try {

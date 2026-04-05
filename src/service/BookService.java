@@ -27,7 +27,7 @@ public class BookService {
     public boolean addBook(Book book) {
         validateBook(book);
         if (books.containsKey(book.getIsbn())) {
-            throw new IllegalArgumentException("ISBN '" + book.getIsbn() + "' đã tồn tại.");
+            return false;
         }
         books.put(book.getIsbn(), book);
         save();
@@ -71,15 +71,14 @@ public class BookService {
     public List<Book> searchByAuthor(String keyword) {
         String kw = keyword.trim().toLowerCase();
         return books.values().stream()
-                .filter(b -> b.getTitle().toLowerCase().contains(kw))
+                .filter(b -> b.getAuthor().toLowerCase().contains(kw))
                 .collect(Collectors.toList());
     }
-
 
     public List<Book> searchByGenre(String keyword) {
         String kw = keyword.trim().toLowerCase();
         return books.values().stream()
-                .filter(b -> b.getTitle().toLowerCase().contains(kw))
+                .filter(b -> b.getGenre().toLowerCase().contains(kw))
                 .collect(Collectors.toList());
     }
 
