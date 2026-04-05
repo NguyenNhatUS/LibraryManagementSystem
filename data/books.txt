@@ -1,6 +1,9 @@
-# Format: isbn|title|author|publisher|publishYear|genre|price|totalCount|availableCount
-978-0-13-468599-1|Clean Code|Robert C. Martin|Prentice Hall|2008|Công nghệ|350000|3|2
-978-0-13-110362-7|The Pragmatic Programmer|David Thomas|Addison-Wesley|2019|Công nghệ|420000|2|2
-978-604-2-12345-6|Dế Mèn Phiêu Lưu Ký|Tô Hoài|NXB Kim Đồng|1941|Văn học|55000|5|5
-978-604-2-67890-1|Số Đỏ|Vũ Trọng Phụng|NXB Hội Nhà Văn|1936|Văn học|75000|4|3
-978-0-7432-7356-5|The Great Gatsby|F. Scott Fitzgerald|Scribner|1925|Văn học|120000|2|2
+ISBN-001|Lập trình Java cơ bản|Nguyễn Xuân Vinh|NXB Giáo dục|2022|Công nghệ thông tin|180000|5|4
+ISBN-002|Clean Code|Robert C. Martin|NXB Trẻ|2020|Công nghệ thông tin|250000|3|2
+ISBN-003|Đắc nhân tâm|Dale Carnegie|NXB Tổng hợp HCM|2019|Kỹ năng sống|85000|8|8
+ISBN-004|Nhà giả kim|Paulo Coelho|NXB Văn học|2020|Văn học nước ngoài|79000|6|6
+ISBN-005|Dế mèn phiêu lưu ký|Tô Hoài|NXB Kim Đồng|2021|Văn học Việt Nam|55000|4|4
+ISBN-006|Tắt đèn|Ngô Tất Tố|NXB Văn học|2018|Văn học Việt Nam|65000|3|3
+ISBN-007|Giải tích 1|Nguyễn Đình Trí|NXB Giáo dục|2021|Toán học|120000|10|8
+ISBN-008|Cơ sở dữ liệu|Nguyễn Văn Ba|NXB ĐHQG HCM|2020|Công nghệ thông tin|150000|5|4
+ISBN-009|Triết học Mác-Lênin|Bộ Giáo dục|NXB Giáo dục|2021|Triết học|95000|7|7
