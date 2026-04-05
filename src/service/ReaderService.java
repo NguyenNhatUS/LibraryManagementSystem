@@ -2,7 +2,6 @@ package service;
 
 import model.Reader;
 import util.FileManager;
-
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
@@ -12,7 +11,7 @@ import java.util.stream.Collectors;
 public class ReaderService {
 
     private final FileManager  fileManager;
-    private List<Reader>       readers; // Collection chính
+    private List<Reader>       readers;
 
     public ReaderService(FileManager fileManager) {
         this.fileManager = fileManager;
@@ -24,7 +23,7 @@ public class ReaderService {
     }
 
 
-    public void addReader(Reader reader) {
+    public boolean addReader(Reader reader) {
         validateReader(reader);
         if (findByIdCard(reader.getIdCard()) != null) {
             throw new IllegalArgumentException("CMND/CCCD '" + reader.getIdCard() + "' đã tồn tại.");
@@ -32,9 +31,10 @@ public class ReaderService {
         reader.setReaderId(generateReaderId());
         readers.add(reader);
         save();
+        return true;
     }
 
-    public void updateReader(Reader updated) {
+    public boolean updateReader(Reader updated) {
         validateReader(updated);
         int index = indexById(updated.getReaderId());
         if (index == -1) {
@@ -49,16 +49,18 @@ public class ReaderService {
 
         readers.set(index, updated);
         save();
+        return true;
     }
 
 
-    public void deleteReader(String readerId) {
+    public boolean deleteReader(String readerId) {
         int index = indexById(readerId);
         if (index == -1) {
             throw new IllegalArgumentException("Không tìm thấy độc giả ID: " + readerId);
         }
         readers.remove(index);
         save();
+        return true;
     }
 
     public Reader findByIdCard(String idCard) {
@@ -115,7 +117,7 @@ public class ReaderService {
     }
 
 
-    private String generateReaderId() {
+    public String generateReaderId() {
         int max = 0;
         for (Reader r : readers) {
             try {

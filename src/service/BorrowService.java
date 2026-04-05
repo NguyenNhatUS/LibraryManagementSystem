@@ -17,6 +17,7 @@ public class BorrowService {
     private final BookService   bookService;
     private List<BorrowSlip>    slips; // Collection chính
 
+
     public BorrowService(FileManager fileManager,
                          ReaderService readerService,
                          BookService bookService) {

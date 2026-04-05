@@ -1,6 +1,10 @@
 package ui;
 
 import service.AccountService;
+import service.BookService;
+import service.BorrowService;
+import service.ReaderService;
+
 import javax.swing.*;
 import java.awt.*;
 
@@ -8,13 +12,21 @@ import java.awt.*;
 public class MainFrame extends JFrame {
 
     private final AccountService accountService;
+    private final ReaderService readerService;
+    private final BookService bookService;
+    private final BorrowService borrowService;
+
     private final String currentUser;
 
     private JPanel contentPanel;
 
-    public MainFrame(AccountService accountService, String currentUser) {
+    public MainFrame(AccountService accountService, ReaderService readerService, BookService bookService, BorrowService borrowService, String currentUser) throws HeadlessException {
         this.accountService = accountService;
+        this.readerService = readerService;
+        this.bookService = bookService;
+        this.borrowService = borrowService;
         this.currentUser = currentUser;
+
         initUI();
     }
 
@@ -75,7 +87,7 @@ public class MainFrame extends JFrame {
 
 
         sidebar.add(sidebarGroup("ĐỘC GIẢ"));
-        sidebar.add(sidebarBtn("Danh sách độc giả",    () -> swapPanel(new PlaceholderPanel("ReaderPanel — sắp có"))));
+        sidebar.add(sidebarBtn("Danh sách độc giả", () -> swapPanel(new ReaderPanel(readerService))));
         sidebar.add(sidebarBtn("Thêm độc giả",         () -> swapPanel(new PlaceholderPanel("AddReaderPanel — sắp có"))));
 
         sidebar.add(sidebarGroup("SÁCH"));
@@ -150,7 +162,7 @@ public class MainFrame extends JFrame {
                 JOptionPane.YES_NO_OPTION);
         if (confirm == JOptionPane.YES_OPTION) {
             dispose();
-            new LoginFrame(accountService);
+            new LoginFrame(accountService, readerService, bookService, borrowService);
         }
     }
 
