@@ -1,33 +1,19 @@
 package ui;
 
 import service.AccountService;
-import service.BookService;
-import service.BorrowService;
-import service.ReaderService;
-
 import javax.swing.*;
 import java.awt.*;
 
 
 public class LoginFrame extends JFrame {
-
-    // ── Services ──────────────────────────────────────────────────────────────
     private final AccountService accountService;
-    private final ReaderService readerService;
-    private final BookService bookService;
-    private final BorrowService borrowService;
-
-    // ── UI ────────────────────────────────────────────────────────────────────
-    private JTextField    txtUsername;
+    private JTextField txtUsername;
     private JPasswordField txtPassword;
     private JButton btnLogin;
     private JButton btnRegister;
 
-    public LoginFrame(AccountService accountService, ReaderService readerService, BookService bookService, BorrowService borrowService) throws HeadlessException {
+    public LoginFrame(AccountService accountService) {
         this.accountService = accountService;
-        this.readerService = readerService;
-        this.bookService = bookService;
-        this.borrowService = borrowService;
         initUI();
     }
 
@@ -100,7 +86,7 @@ public class LoginFrame extends JFrame {
 
         if (accountService.login(username, password)) {
             dispose();
-            new MainFrame(accountService,readerService, bookService, borrowService, username);
+            new MainFrame(accountService, username);
         } else {
             showError("Sai tên đăng nhập hoặc mật khẩu.");
             txtPassword.setText("");

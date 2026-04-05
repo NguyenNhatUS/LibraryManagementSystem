@@ -41,7 +41,6 @@ public class ReaderService {
             throw new IllegalArgumentException("Không tìm thấy độc giả ID: " + updated.getReaderId());
         }
 
-
         Reader existing = findByIdCard(updated.getIdCard());
         if (existing != null && !existing.getReaderId().equals(updated.getReaderId())) {
             throw new IllegalArgumentException("CMND/CCCD '" + updated.getIdCard() + "' đã được dùng bởi độc giả khác.");
@@ -88,7 +87,6 @@ public class ReaderService {
     public int getTotalReaders() {
         return readers.size();
     }
-
 
     public java.util.Map<String, Integer> countByGender() {
         java.util.Map<String, Integer> result = new java.util.LinkedHashMap<>();
