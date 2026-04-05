@@ -94,8 +94,8 @@ public class MainFrame extends JFrame {
         sidebar.add(sidebarBtn("Thêm độc giả",         () -> swapPanel(new PlaceholderPanel("AddReaderPanel — sắp có"))));
 
         sidebar.add(sidebarGroup("SÁCH"));
-        sidebar.add(sidebarBtn("Danh sách sách",       () -> swapPanel(new PlaceholderPanel("BookPanel — sắp có"))));
-        sidebar.add(sidebarBtn("Thêm sách",            () -> swapPanel(new PlaceholderPanel("AddBookPanel — sắp có"))));
+        sidebar.add(sidebarBtn("Danh sách sách", () -> swapPanel(new BookPanel(bookService))));
+        sidebar.add(sidebarBtn("Thêm sách",      () -> swapPanel(new BookPanel(bookService))));
 
         sidebar.add(sidebarGroup("PHIẾU MƯỢN / TRẢ"));
         sidebar.add(sidebarBtn("Lập phiếu mượn",       () -> swapPanel(new PlaceholderPanel("BorrowPanel — sắp có"))));

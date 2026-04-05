@@ -13,7 +13,7 @@ import java.util.stream.Collectors;
 public class BookService {
 
     private final FileManager      fileManager;
-    private Map<String, Book>      books; // Collection chính
+    private Map<String, Book>      books;
 
     public BookService(FileManager fileManager) {
         this.fileManager = fileManager;
@@ -24,46 +24,59 @@ public class BookService {
         return new ArrayList<>(books.values());
     }
 
-    public void addBook(Book book) {
+    public boolean addBook(Book book) {
         validateBook(book);
         if (books.containsKey(book.getIsbn())) {
             throw new IllegalArgumentException("ISBN '" + book.getIsbn() + "' đã tồn tại.");
         }
         books.put(book.getIsbn(), book);
         save();
+        return true;
     }
 
 
-    public void updateBook(Book updated) {
-        validateBook(updated);
-        if (!books.containsKey(updated.getIsbn())) {
-            throw new IllegalArgumentException("Không tìm thấy sách ISBN: " + updated.getIsbn());
-        }
+    public boolean updateBook(Book updated) {
+        Book existing = books.get(updated.getIsbn());
+        if (existing == null) return false;
 
 
-        if (updated.getAvailableCount() > updated.getTotalCount()) {
-            throw new IllegalArgumentException("Số sách khả dụng không được lớn hơn tổng số sách.");
-        }
+        int diff = updated.getTotalCount() - existing.getTotalCount();
+        updated.setAvailableCount(existing.getAvailableCount() + diff);
 
         books.put(updated.getIsbn(), updated);
         save();
+        return true;
     }
 
-    public void deleteBook(String isbn) {
+    public boolean deleteBook(String isbn) {
         if (!books.containsKey(isbn)) {
             throw new IllegalArgumentException("Không tìm thấy sách ISBN: " + isbn);
         }
         books.remove(isbn);
         save();
+        return true;
     }
-
 
     public Book findByIsbn(String isbn) {
         return books.get(isbn.trim());
     }
 
+    public List<Book> searchByTitle(String keyword) {
+        String kw = keyword.trim().toLowerCase();
+        return books.values().stream()
+                .filter(b -> b.getTitle().toLowerCase().contains(kw))
+                .collect(Collectors.toList());
+    }
 
-    public List<Book> findByTitle(String keyword) {
+    public List<Book> searchByAuthor(String keyword) {
+        String kw = keyword.trim().toLowerCase();
+        return books.values().stream()
+                .filter(b -> b.getTitle().toLowerCase().contains(kw))
+                .collect(Collectors.toList());
+    }
+
+
+    public List<Book> searchByGenre(String keyword) {
         String kw = keyword.trim().toLowerCase();
         return books.values().stream()
                 .filter(b -> b.getTitle().toLowerCase().contains(kw))
@@ -73,7 +86,7 @@ public class BookService {
     public boolean borrowBook(String isbn) {
         Book book = books.get(isbn);
         if (book == null) return false;
-        boolean ok = book.borrow(); // Gọi method nghiệp vụ trong Model
+        boolean ok = book.borrow();
         if (ok) save();
         return ok;
     }
