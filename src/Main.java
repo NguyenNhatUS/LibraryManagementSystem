@@ -6,6 +6,8 @@ import ui.LoginFrame;
 import util.FileManager;
 import javax.swing.*;
 
+
+// java -jar LibraryManagementSystem.jar
 public class Main {
     public static void main(String[] args) {
         FileManager fileManager = new FileManager("data/");
