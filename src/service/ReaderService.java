@@ -108,7 +108,7 @@ public class ReaderService {
             throw new IllegalArgumentException("Họ tên không được để trống.");
         if (r.getIdCard() == null || r.getIdCard().trim().isEmpty())
             throw new IllegalArgumentException("CMND/CCCD không được để trống.");
-        if (r.getEmail() == null || !r.getEmail().contains("@"))
+        if (r.getEmail() == null || !r.getEmail().endsWith("@gmail.com"))
             throw new IllegalArgumentException("Email không hợp lệ.");
         if (r.getDateOfBirth() == null || r.getDateOfBirth().isAfter(LocalDate.now()))
             throw new IllegalArgumentException("Ngày sinh không hợp lệ.");
