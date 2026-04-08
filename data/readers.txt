@@ -5,5 +5,4 @@ DG004|Phạm Thị Dung|001095456789|1995-04-30|Nữ|dungpham@email.com|321 Đin
 DG005|Hoàng Văn Em|001090567890|1990-12-17|Nam|emhoang@email.com|654 Cách Mạng Tháng 8, Q10, HCM|2022-12-05
 DG006|Vũ Thị Phương|001093678901|1993-08-25|Nữ|phuongvu@email.com|987 Nguyễn Thị Minh Khai, Q3, HCM|2025-02-18
 DG007|Đặng Văn Giang|001085789012|1985-06-03|Nam|giangdang@email.com|147 Trần Hưng Đạo, Q5, HCM|2024-07-30
-DG008|Bùi Thị Hoa|001097890123|1997-09-14|Nữ|hoabui@email.com|258 Lý Tự Trọng, Q1, HCM|2023-11-22
-R001|Nhật|2312312313123|2006-08-01|Nam|nld@gmail.com|Quảng Trị|2026-04-07
+DG008|Bùi Thị Hoa|001097890123|1996-09-14|Nữ|hoabui@email.com|258 Lý Tự Trọng, Q1, HCM|2023-11-22
