@@ -1,9 +1,29 @@
-ISBN-001|Lập trình Java cơ bản|Nguyễn Xuân Vinh|NXB Giáo dục|2022|Công nghệ thông tin|180000|5|4
-ISBN-002|Clean Code|Robert C. Martin|NXB Trẻ|2020|Công nghệ thông tin|250000|3|2
-ISBN-003|Đắc nhân tâm|Dale Carnegie|NXB Tổng hợp HCM|2019|Kỹ năng sống|85000|8|8
-ISBN-004|Nhà giả kim|Paulo Coelho|NXB Văn học|2020|Văn học nước ngoài|79000|6|6
-ISBN-005|Dế mèn phiêu lưu ký|Tô Hoài|NXB Kim Đồng|2021|Văn học Việt Nam|55000|4|4
-ISBN-006|Tắt đèn|Ngô Tất Tố|NXB Văn học|2018|Văn học Việt Nam|65000|3|3
-ISBN-007|Giải tích 1|Nguyễn Đình Trí|NXB Giáo dục|2021|Toán học|120000|10|8
-ISBN-008|Cơ sở dữ liệu|Nguyễn Văn Ba|NXB ĐHQG HCM|2020|Công nghệ thông tin|150000|5|4
-ISBN-009|Triết học Mác-Lênin|Bộ Giáo dục|NXB Giáo dục|2021|Triết học|95000|7|7
+ISBN-001|Lập trình Java cơ bản|Nguyễn Xuân Vinh|NXB Giáo dục|2022|Công nghệ thông tin|180000.0|5|3
+ISBN-002|Clean Code|Robert C. Martin|NXB Trẻ|2020|Công nghệ thông tin|250000.0|3|1
+ISBN-003|Đắc nhân tâm|Dale Carnegie|NXB Tổng hợp HCM|2019|Kỹ năng sống|85000.0|8|8
+ISBN-004|Nhà giả kim|Paulo Coelho|NXB Văn học|2020|Văn học nước ngoài|79000.0|6|6
+ISBN-005|Dế mèn phiêu lưu ký|Tô Hoài|NXB Kim Đồng|2021|Văn học Việt Nam|55000.0|4|4
+ISBN-006|Tắt đèn|Ngô Tất Tố|NXB Văn học|2018|Văn học Việt Nam|65000.0|3|3
+ISBN-007|Giải tích 1|Nguyễn Đình Trí|NXB Giáo dục|2021|Toán học|120000.0|10|8
+ISBN-008|Cơ sở dữ liệu|Nguyễn Văn Ba|NXB ĐHQG HCM|2020|Công nghệ thông tin|150000.0|5|4
+ISBN-009|Triết học Mác-Lênin|Bộ Giáo dục|NXB Giáo dục|2021|Triết học|95000.0|7|7
+ISBN-010|Effective Java|Joshua Bloch|NXB Khoa học Kỹ thuật|2018|Công nghệ thông tin|350000.0|5|4
+ISBN-011|Spring in Action|Craig Walls|NXB Bách Khoa|2020|Công nghệ thông tin|280000.0|4|3
+ISBN-012|Designing Data-Intensive Applications|Martin Kleppmann|NXB Trẻ|2019|Công nghệ thông tin|450000.0|3|2
+ISBN-013|System Design Interview - An Insider's Guide|Alex Xu|NXB Tổng hợp HCM|2021|Công nghệ thông tin|320000.0|6|5
+ISBN-014|Cracking the Coding Interview|Gayle Laakmann McDowell|NXB Thông tin và Truyền thông|2019|Công nghệ thông tin|400000.0|8|6
+ISBN-015|Head First Java|Kathy Sierra|NXB Trẻ|2022|Công nghệ thông tin|290000.0|5|5
+ISBN-016|Spring Boot in Action|Craig Walls|NXB Bách Khoa|2018|Công nghệ thông tin|250000.0|3|1
+ISBN-017|Java Concurrency in Practice|Brian Goetz|NXB Khoa học Kỹ thuật|2016|Công nghệ thông tin|310000.0|2|2
+ISBN-018|Building Microservices|Sam Newman|NXB Bách Khoa|2021|Công nghệ thông tin|380000.0|4|4
+ISBN-019|Grokking the System Design Interview|Design Gurus|NXB Tổng hợp HCM|2022|Công nghệ thông tin|270000.0|5|3
+ISBN-020|Core Java Volume I|Cay S. Horstmann|NXB Khoa học Kỹ thuật|2020|Công nghệ thông tin|360000.0|4|2
+ISBN-021|Elements of Programming Interviews in Java|Adnan Aziz|NXB Thông tin và Truyền thông|2018|Công nghệ thông tin|390000.0|3|3
+ISBN-022|Cloud Native Java|Josh Long|NXB Trẻ|2021|Công nghệ thông tin|340000.0|4|1
+ISBN-023|Grokking Algorithms|Aditya Bhargava|NXB Tổng hợp HCM|2020|Công nghệ thông tin|210000.0|7|7
+ISBN-024|Head First Design Patterns|Eric Freeman|NXB Trẻ|2021|Công nghệ thông tin|300000.0|6|4
+ISBN-025|Pro Spring Boot 2|Felipe Gutierrez|NXB Bách Khoa|2019|Công nghệ thông tin|280000.0|3|2
+ISBN-026|Data Structures and Algorithms in Java|Robert Lafore|NXB Khoa học Kỹ thuật|2017|Công nghệ thông tin|250000.0|5|5
+ISBN-027|Microservices Patterns|Chris Richardson|NXB Tổng hợp HCM|2020|Công nghệ thông tin|420000.0|4|3
+ISBN-028|Clean Architecture|Robert C. Martin|NXB Trẻ|2019|Công nghệ thông tin|260000.0|5|4
+ISBN-029|Java Performance: The Definitive Guide|Scott Oaks|NXB Khoa học Kỹ thuật|2018|Công nghệ thông tin|330000.0|2|1
