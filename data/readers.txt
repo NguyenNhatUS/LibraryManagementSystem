@@ -11,5 +11,4 @@ DG010|Lý Thị Yến|001094012345|1994-10-28|Nữ|yenly@email.com|159 Nguyễn 
 DG011|Châu Hoàng Khang|001089123456|1989-02-14|Nam|khangchau@email.com|753 Lê Hồng Phong, Q10, HCM|2023-08-15
 DG012|Đỗ Thị Lan|001098234567|1998-11-05|Nữ|lando@email.com|852 Sư Vạn Hạnh, Q10, HCM|2024-10-20
 DG013|Vương Đình Trọng|001086345678|1986-07-09|Nam|trongvuong@email.com|963 An Dương Vương, Q5, HCM|2022-04-12
-DG014|Phan Thị Mai|001099456789|1999-12-01|Nữ|maiphan@email.com|123 Phạm Văn Đồng, Thủ Đức, HCM|2025-03-01
-DG015|Dương Văn Kiệt|001095567890|1995-09-19|Nam|kietduong@email.com|456 Xa Lộ Hà Nội, TP Thủ Đức, HCM|2024-11-25
+
